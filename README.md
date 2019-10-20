@@ -10,7 +10,7 @@ processing library for PHP. This package implements HyperPay support for Omnipay
 Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply require `league/omnipay` and `omnipay/hyperpay` with Composer:
 
 ```
-composer require league/omnipay omnipay/hyperpay
+composer require league/omnipay abdibr116/omnipay-hyperpay
 ```
 
 
