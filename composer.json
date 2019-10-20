@@ -1,5 +1,5 @@
 {
-    "name": "omnipay/hyperpay",
+    "name": "abdibr116/omnipay-hyperpay",
     "type": "library",
     "description": "HyperPay gateway for Omnipay payment processing library",
     "keywords": [
