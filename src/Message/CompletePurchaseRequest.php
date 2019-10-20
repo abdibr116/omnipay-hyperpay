@@ -6,7 +6,7 @@
 namespace Omnipay\HyperPay\Message;
 
 class CompletePurchaseRequest extends PurchaseRequest
-{   
+{
     public function getCheckoutId()
     {
         return $this->getParameter('checkoutId');
@@ -39,8 +39,8 @@ class CompletePurchaseRequest extends PurchaseRequest
     }
 
     public function sendData($data)
-    {   
-        try{
+    {
+        try {
             $httpResponse = $this->httpClient->request(
                 'GET',
                 $this->getEndpoint() . '?entityId='.$this->getEntityId(),
@@ -48,7 +48,7 @@ class CompletePurchaseRequest extends PurchaseRequest
                     'Accept' => 'application/json',
                     'Authorization' => 'Bearer ' . $this->getAccessToken(),
                     'Content-Type' => 'application/x-www-form-urlencoded',
-                )                
+                )
             );
             
             // Empty response body should be parsed also as and empty array
@@ -61,8 +61,7 @@ class CompletePurchaseRequest extends PurchaseRequest
                 $e->getCode()
             );
         }
-        
-    } 
+    }
 
     public function getEndpoint()
     {

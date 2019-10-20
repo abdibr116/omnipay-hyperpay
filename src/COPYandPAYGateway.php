@@ -52,6 +52,16 @@ class COPYandPAYGateway extends AbstractGateway
         return $this->setParameter('checkoutId', $value);
     }
 
+    public function getPaymentType()
+    {
+        return $this->getParameter('paymentType');
+    }
+
+    public function setPaymentType($value)
+    {
+        return $this->setParameter('paymentType', $value);
+    }
+
     public function purchase(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\HyperPay\Message\PurchaseRequest', $parameters);

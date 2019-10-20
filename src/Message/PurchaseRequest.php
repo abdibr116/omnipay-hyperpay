@@ -79,28 +79,30 @@ class PurchaseRequest extends AbstractRequest
         $data = array();
 
         $data['entityId'] = $this->getEntityId();
-        $data['amount'] = $this->getAmount();        
+        $data['amount'] = $this->getAmount();
         $data['currency'] = $this->getCurrency();
         $data['paymentType'] = $this->getPaymentType();
-        if($this->getTestMode()){
+        if ($this->getTestMode()) {
             $data['testMode'] = 'EXTERNAL';
-        }        
-        /*$data['merchantTransactionId'] = '123123123';
-        $data['customer.email'] = 'abdibr116@gmail.com';
-        $data['billing.street1'] = 'Tahliyah ST';
-        $data['billing.city'] = 'Riyadh';
-        $data['billing.state'] = 'Riyadh';
-        $data['billing.country'] = 'Saudi Arabia';
-        $data['billing.postcode'] = '21944';
-        $data['customer.givenName'] = 'Abdulrahman I';
-        $data['customer.surname'] = 'Ibrahim';*/
+        }
+        
+        /*ًTODO should be added later
+        $data['merchantTransactionId'] = '';
+        $data['customer.email'] = '';
+        $data['billing.street1'] = '';
+        $data['billing.city'] = '';
+        $data['billing.state'] = '';
+        $data['billing.country'] = '';
+        $data['billing.postcode'] = '';
+        $data['customer.givenName'] = '';
+        $data['customer.surname'] = '';*/
         
         return $data;
-    }    
+    }
 
     public function sendData($data)
-    {   
-        try{
+    {
+        try {
             $httpResponse = $this->httpClient->request(
                 'POST',
                 $this->getEndpoint() . '/v1/checkouts',
@@ -122,7 +124,6 @@ class PurchaseRequest extends AbstractRequest
                 $e->getCode()
             );
         }
-        
     }
 
     protected function getEndpoint()

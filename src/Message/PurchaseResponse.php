@@ -23,18 +23,22 @@ class PurchaseResponse extends AbstractResponse
 
     public function isSuccessful()
     {
-        return isset($this->data['result']) && empty($this->data['result']['parameterErrors']) && $this->getCode() < 400;
+        return isset($this->data['result'])
+            && empty($this->data['result']['parameterErrors'])
+            && $this->getCode() < 400;
     }
 
-    public function getErrors(){
-        if(isset($this->data['result']) && isset($this->data['result']['parameterErrors'])){
+    public function getErrors()
+    {
+        if (isset($this->data['result']) && isset($this->data['result']['parameterErrors'])) {
             return $this->data['result']['parameterErrors'];
         }
 
         return null;
     }
 
-    public function getCheckoutId(){
+    public function getCheckoutId()
+    {
         if (!empty($this->data['id'])) {
             return $this->data['id'];
         }
@@ -42,7 +46,8 @@ class PurchaseResponse extends AbstractResponse
         return null;
     }
 
-    public function getResultCode(){
+    public function getResultCode()
+    {
         if (!empty($this->data['result']) && !empty($this->data['result']['code'])) {
             return $this->data['result']['code'];
         }
@@ -50,7 +55,8 @@ class PurchaseResponse extends AbstractResponse
         return null;
     }
 
-    public function getDescription(){
+    public function getDescription()
+    {
         if (!empty($this->data['result']) && !empty($this->data['result']['description'])) {
             return $this->data['result']['description'];
         }
@@ -62,5 +68,4 @@ class PurchaseResponse extends AbstractResponse
     {
         return $this->statusCode;
     }
-
 }

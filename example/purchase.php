@@ -12,8 +12,7 @@ $error = false;
 $errorMessage = '';
 $response = null;
 
-if(isset($_POST['amount']))
-{
+if (isset($_POST['amount'])) {
     //Setup payment gateway
     $gateway = Omnipay::create('HyperPay_COPYandPAY');
 
@@ -33,9 +32,9 @@ if(isset($_POST['amount']))
     } catch (\Exception $e) {
         $errorMessage = 'Exception caught while attempting authorize.<br>';
         $errorMessage .= 'Exception type == ' . get_class($e) . '<br>';
-        $errorMessage .= 'Message == ' . $e->getMessage();        
+        $errorMessage .= 'Message == ' . $e->getMessage();
     }
-}else{
+} else {
     $error = true;
     $errorMessage = 'Missing Parameters';
 }
@@ -54,10 +53,14 @@ if(isset($_POST['amount']))
     <title>Test HyperPay</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" 
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <style>
         body {
@@ -80,7 +83,10 @@ if(isset($_POST['amount']))
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">        
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <button type="button" 
+            class="navbar-toggle collapsed" 
+            data-toggle="collapse" data-target="#navbar" 
+            aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -101,25 +107,27 @@ if(isset($_POST['amount']))
             <li><a href="index.php">Home</a></li>
             <li class="active">Purchase</li>
         </ol>
-<?php if($error){?>
+<?php if ($error) {?>
         <div class="alert alert-danger"><?php echo $errorMessage;?></div>
 <?php }?>
-<?php if(!empty($response)){?>
-    <?php if($response->isSuccessful()){?>
+<?php if (!empty($response)) {?>
+    <?php if ($response->isSuccessful()) {?>
         <div class="alert alert-info">Status: <?php echo $response->getCode();?></div>
         <div class="alert alert-info">Code: <?php echo $response->getResultCode();?></div>
         <div class="alert alert-info">ID: <?php echo $response->getCheckoutId();?></div>
         <div class="alert alert-info">Description: <?php echo $response->getDescription();?></div>
         <div class="card">
-            <script src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=<?php echo $response->getCheckoutId();?>"></script>
+            <script 
+                src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=<?php echo $response->getCheckoutId();?>">
+            </script>
             <form action="<?php echo $server;?>/result.php?checkoutId=<?php echo $response->getCheckoutId();?>" 
                 class="paymentWidgets" 
                 data-brands="VISA MASTER">
             </form>
         </div>
-    <?php }else{?>
+    <?php } else {?>
         <div class="alert alert-danger">Status: <?php echo $response->getCode();?></div>                    
-        <?php if(is_array($response->getErrors())){?>
+        <?php if (is_array($response->getErrors())) {?>
         <div class="alert alert-danger">Errors:</div>
         <table class="table">
         <thead>
@@ -128,18 +136,18 @@ if(isset($_POST['amount']))
             <th>Message</th>
         </thead>
         <tbody>
-        <?php foreach($response->getErrors() as $e){?>
-            <tr>
-            <td><?php echo $e['name'];?></td>
-            <td><?php echo $e['value'];?></td>
-            <td><?php echo $e['message'];?></td>
-            </tr>
-        <?php }?>
+            <?php foreach ($response->getErrors() as $e) {?>
+                <tr>
+                <td><?php echo $e['name'];?></td>
+                <td><?php echo $e['value'];?></td>
+                <td><?php echo $e['message'];?></td>
+                </tr>
+            <?php }?>
         </tbody>
         </table>
         <?php } ?>
     <?php }?>
-<?php }else{?>
+<?php } else {?>
         <div class="alert alert-danger">Error: Empty Response</div>
 <?php }?>
     </div><!-- /.container -->
@@ -149,6 +157,8 @@ if(isset($_POST['amount']))
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+        crossorigin="anonymous"></script>
   </body>
 </html>

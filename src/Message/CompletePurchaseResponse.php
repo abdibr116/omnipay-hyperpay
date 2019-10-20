@@ -7,12 +7,14 @@ namespace Omnipay\HyperPay\Message;
  */
 class CompletePurchaseResponse extends PurchaseResponse
 {
-    public function getCheckoutId(){
+    public function getCheckoutId()
+    {
         //Not implemented
         return null;
     }
 
-    public function getCard(){
+    public function getCard()
+    {
         if (!empty($this->data['card'])) {
             return $this->data['card'];
         }
