@@ -1,0 +1,39 @@
+{
+    "name": "omnipay/hyperpay",
+    "type": "library",
+    "description": "HyperPay gateway for Omnipay payment processing library",
+    "keywords": [
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment",
+        "hyperpay",
+        "purchase"
+    ],
+    "homepage": "https://github.com/abdibr116/omnipay-hyperpay",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abdulrahman I Ibrahim",
+            "email": "abdibr116@gmail.com"
+        }        
+    ],
+    "autoload": {
+        "psr-4": { "Omnipay\\HyperPay\\" : "src/" }
+    },
+    "require": {
+        "omnipay/common": "^3"
+    },
+    "require-dev": {
+        "omnipay/tests": "^3",
+        "squizlabs/php_codesniffer": "^3",
+        "phpro/grumphp": "^0.14"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.0.x-dev"
+        }
+    },
+    "prefer-stable": true
+}
