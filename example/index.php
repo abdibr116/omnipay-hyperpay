@@ -91,7 +91,9 @@ $server = "http://$_SERVER[HTTP_HOST]";
             <div class="form-group">
                 <label for="mobile">Mobile</label>
                 <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span></span>
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+                    </span>
                     <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Mobile">
                 </div>
             </div>

@@ -5,8 +5,10 @@ require __DIR__.'/../vendor/autoload.php';
 
 $server = "http://$_SERVER[HTTP_HOST]";
 
-$accessToken = 'OGFjN2E0Yzg2ZGQ4NjRiYTAxNmRkYjExNDk3NzA1NmR8NmRwVzJQaDR4UQ==';
-$entityId = '8ac7a4c86dd864ba016ddb11a9bb0571';
+//These parameters are just examples and copied from https://hyperpay.docs.oppwa.com/tutorials/integration-guide
+//You should use your own credentials
+$accessToken = 'OGE4Mjk0MTc0ZDA1OTViYjAxNGQwNWQ4MjllNzAxZDF8OVRuSlBjMm45aA==';
+$entityId = '8a8294174d0595bb014d05d82e5b01d2';
 
 $error = false;
 $errorMessage = '';
