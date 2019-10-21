@@ -5,14 +5,14 @@ require __DIR__.'/../vendor/autoload.php';
 
 $server = "http://$_SERVER[HTTP_HOST]";
 
-$accessToken = 'OGE4Mjk0MTc0ZDA1OTViYjAxNGQwNWQ4MjllNzAxZDF8OVRuSlBjMm45aA==';
-$entityId = '8a8294174d0595bb014d05d82e5b01d2';
+$accessToken = 'OGFjN2E0Yzg2ZGQ4NjRiYTAxNmRkYjExNDk3NzA1NmR8NmRwVzJQaDR4UQ==';
+$entityId = '8ac7a4c86dd864ba016ddb11a9bb0571';
 
 $error = false;
 $errorMessage = '';
 $response = null;
 
-if (isset($_GET['checkoutId']) && $_GET['resourcePath']) {
+if ($_GET['resourcePath']) {
     //Setup payment gateway
     $gateway = Omnipay::create('HyperPay_COPYandPAY');
 
@@ -24,7 +24,6 @@ if (isset($_GET['checkoutId']) && $_GET['resourcePath']) {
 
     try {
         $transaction = $gateway->completePurchase(array(
-            'checkoutId'        => $_GET['checkoutId'],
             'resourcePath'      => $_GET['resourcePath']
         ));
     
@@ -113,11 +112,13 @@ if (isset($_GET['checkoutId']) && $_GET['resourcePath']) {
     <?php if ($response->isSuccessful()) {?>
         <div class="alert alert-info">Status: <?php echo $response->getCode();?></div>
         <div class="alert alert-info">Code: <?php echo $response->getResultCode();?></div>        
-        <div class="alert alert-info">Description: <?php echo $response->getDescription();?></div>
+        <div class="alert alert-info">Message: <?php echo $response->getMessage();?></div>
         <div class="alert alert-info">Card:<br><?php print_r($response->getCard());?></div>
         <div class="alert alert-info">Data:<br><?php print_r($response->getData());?></div>
     <?php } else {?>
-        <div class="alert alert-danger">Status: <?php echo $response->getCode();?></div>                    
+        <div class="alert alert-danger">Status: <?php echo $response->getCode();?></div>
+        <div class="alert alert-danger">Message: <?php echo $response->getMessage();?></div>
+        <div class="alert alert-danger">Data:<br><?php print_r($response->getData());?></div>
         <?php if (is_array($response->getErrors())) {?>
         <div class="alert alert-danger">Errors:</div>
         <table class="table">

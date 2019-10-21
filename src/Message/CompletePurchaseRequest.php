@@ -7,16 +7,6 @@ namespace Omnipay\HyperPay\Message;
 
 class CompletePurchaseRequest extends PurchaseRequest
 {
-    public function getCheckoutId()
-    {
-        return $this->getParameter('checkoutId');
-    }
-
-    public function setCheckoutId($value)
-    {
-        return $this->setParameter('checkoutId', $value);
-    }
-
     public function getResourcePath()
     {
         return $this->getParameter('resourcePath');

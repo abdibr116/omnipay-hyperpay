@@ -31,16 +31,6 @@ class PurchaseRequest extends AbstractRequest
     {
         return $this->setParameter('accessToken', $value);
     }
-
-    public function getCheckoutId()
-    {
-        return $this->getParameter('checkoutId');
-    }
-
-    public function setCheckoutId($value)
-    {
-        return $this->setParameter('checkoutId', $value);
-    }
     
     public function getAmount()
     {
@@ -62,40 +52,131 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('currency', $value);
     }
 
-    public function getPaymentType()
+    public function getTransactionId()
     {
-        return $this->getParameter('paymentType');
+        return $this->getParameter('transactionId');
     }
 
-    public function setPaymentType($value)
+    public function setTransactionId($value)
     {
-        return $this->setParameter('paymentType', $value);
+        return $this->setParameter('transactionId', $value);
+    }
+
+    public function getEmail()
+    {
+        return $this->getParameter('email');
+    }
+
+    public function setEmail($value)
+    {
+        return $this->setParameter('email', $value);
+    }
+
+    public function getMobile()
+    {
+        return $this->getParameter('mobile');
+    }
+
+    public function setMobile($value)
+    {
+        return $this->setParameter('mobile', $value);
+    }
+
+    public function getAddress()
+    {
+        return $this->getParameter('address');
+    }
+
+    public function setAddress($value)
+    {
+        return $this->setParameter('address', $value);
+    }
+
+    public function getCity()
+    {
+        return $this->getParameter('city');
+    }
+
+    public function setCity($value)
+    {
+        return $this->setParameter('city', $value);
+    }
+
+    public function getState()
+    {
+        return $this->getParameter('state');
+    }
+
+    public function setState($value)
+    {
+        return $this->setParameter('state', $value);
+    }
+
+    public function getCountry()
+    {
+        return $this->getParameter('country');
+    }
+
+    public function setCountry($value)
+    {
+        return $this->setParameter('country', $value);
+    }
+
+    public function getPostCode()
+    {
+        return $this->getParameter('postCode');
+    }
+
+    public function setPostCode($value)
+    {
+        return $this->setParameter('postCode', $value);
+    }
+
+    public function getFirstName()
+    {
+        return $this->getParameter('firstName');
+    }
+
+    public function setFirstName($value)
+    {
+        return $this->setParameter('firstName', $value);
+    }
+
+    public function getLastName()
+    {
+        return $this->getParameter('lastName');
+    }
+
+    public function setLastName($value)
+    {
+        return $this->setParameter('lastName', $value);
     }
 
     public function getData()
     {
-        $this->validate('entityId', 'amount', 'currency', 'paymentType');
+        $this->validate('entityId', 'amount', 'currency');
 
         $data = array();
 
         $data['entityId'] = $this->getEntityId();
         $data['amount'] = $this->getAmount();
         $data['currency'] = $this->getCurrency();
-        $data['paymentType'] = $this->getPaymentType();
+        $data['paymentType'] = 'DB'; //Always DB
         if ($this->getTestMode()) {
             $data['testMode'] = 'EXTERNAL';
         }
         
-        /*ًTODO should be added later
-        $data['merchantTransactionId'] = '';
-        $data['customer.email'] = '';
-        $data['billing.street1'] = '';
-        $data['billing.city'] = '';
-        $data['billing.state'] = '';
-        $data['billing.country'] = '';
-        $data['billing.postcode'] = '';
-        $data['customer.givenName'] = '';
-        $data['customer.surname'] = '';*/
+        // Other requitred fields by some banks
+        $data['merchantTransactionId'] = $this->getTransactionId();
+        $data['customer.email'] = $this->getEmail();
+        $data['customer.mobile'] = $this->getMobile();
+        $data['billing.street1'] = $this->getAddress();
+        $data['billing.city'] = $this->getCity();
+        $data['billing.state'] = $this->getState();
+        $data['billing.country'] = $this->getCountry();
+        $data['billing.postcode'] = $this->getPostCode();
+        $data['customer.givenName'] = $this->getFirstName();
+        $data['customer.surname'] = $this->getLastName();
         
         return $data;
     }

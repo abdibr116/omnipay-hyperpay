@@ -3,10 +3,21 @@ use Omnipay\Omnipay;
 
 require __DIR__.'/../vendor/autoload.php';
 
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+
 $server = "http://$_SERVER[HTTP_HOST]";
 
-$accessToken = 'OGE4Mjk0MTc0ZDA1OTViYjAxNGQwNWQ4MjllNzAxZDF8OVRuSlBjMm45aA==';
-$entityId = '8a8294174d0595bb014d05d82e5b01d2';
+$accessToken = 'OGFjN2E0Yzg2ZGQ4NjRiYTAxNmRkYjExNDk3NzA1NmR8NmRwVzJQaDR4UQ==';
+$entityId = '8ac7a4c86dd864ba016ddb11a9bb0571';
 
 $error = false;
 $errorMessage = '';
@@ -26,6 +37,9 @@ if (isset($_POST['amount'])) {
         $transaction = $gateway->purchase(array(
             'amount'        => $_POST['amount'],
             'currency'      => 'SAR',//Change it to your currency
+            'transactionId' => generateRandomString(6),
+            'email'         => $_POST['email'],
+            'mobile'        => $_POST['mobile'],
         ));
     
         $response = $transaction->send();
@@ -115,18 +129,19 @@ if (isset($_POST['amount'])) {
         <div class="alert alert-info">Status: <?php echo $response->getCode();?></div>
         <div class="alert alert-info">Code: <?php echo $response->getResultCode();?></div>
         <div class="alert alert-info">ID: <?php echo $response->getCheckoutId();?></div>
-        <div class="alert alert-info">Description: <?php echo $response->getDescription();?></div>
+        <div class="alert alert-info">Message: <?php echo $response->getMessage();?></div>
         <div class="card">
             <script 
                 src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=<?php echo $response->getCheckoutId();?>">
             </script>
-            <form action="<?php echo $server;?>/result.php?checkoutId=<?php echo $response->getCheckoutId();?>" 
+            <form action="<?php echo $server;?>/result.php" 
                 class="paymentWidgets" 
                 data-brands="VISA MASTER">
             </form>
         </div>
     <?php } else {?>
         <div class="alert alert-danger">Status: <?php echo $response->getCode();?></div>                    
+        <div class="alert alert-danger">Message: <?php echo $response->getMessage();?></div>
         <?php if (is_array($response->getErrors())) {?>
         <div class="alert alert-danger">Errors:</div>
         <table class="table">

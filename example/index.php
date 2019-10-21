@@ -81,6 +81,20 @@ $server = "http://$_SERVER[HTTP_HOST]";
                     <input type="number" class="form-control" name="amount" id="amount" placeholder="Amount">
                 </div>
             </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-group">
+                    <span class="input-group-addon">@</span>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span></span>
+                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Mobile">
+                </div>
+            </div>
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
     </div><!-- /.container -->

@@ -17,8 +17,9 @@ class COPYandPAYGateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return array(
-            'paymentType' => 'DB',//Fixed
-            'testMode' => false,
+            'accessToken'   => '',
+            'entityId'      => '',
+            'testMode'      => false
         );
     }
 
@@ -40,26 +41,6 @@ class COPYandPAYGateway extends AbstractGateway
     public function setAccessToken($value)
     {
         return $this->setParameter('accessToken', $value);
-    }
-
-    public function getCheckoutId()
-    {
-        return $this->getParameter('checkoutId');
-    }
-
-    public function setCheckoutId($value)
-    {
-        return $this->setParameter('checkoutId', $value);
-    }
-
-    public function getPaymentType()
-    {
-        return $this->getParameter('paymentType');
-    }
-
-    public function setPaymentType($value)
-    {
-        return $this->setParameter('paymentType', $value);
     }
 
     public function purchase(array $parameters = array())
