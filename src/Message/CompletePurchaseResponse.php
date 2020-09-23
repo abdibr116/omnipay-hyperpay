@@ -49,7 +49,8 @@ class CompletePurchaseResponse extends PurchaseResponse
         return null;
     }
 
-    public function getTransactionReference(){
+    public function getTransactionReference()
+    {
         if (!empty($this->data['id'])) {
             return $this->data['id'];
         }

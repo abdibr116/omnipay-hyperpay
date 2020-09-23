@@ -90,7 +90,8 @@ class PurchaseResponse extends AbstractResponse
         return $this->statusCode;
     }
 
-    public function getTransactionReference(){
+    public function getTransactionReference()
+    {
         if (!empty($this->data['id'])) {
             return $this->data['id'];
         }
